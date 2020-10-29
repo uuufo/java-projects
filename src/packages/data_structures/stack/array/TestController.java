@@ -1,4 +1,4 @@
-package packages.data_structures.mystack.array;
+package packages.data_structures.stack.array;
 
 /**
  *      To test soundness of MyStackArray class.

@@ -1,4 +1,4 @@
-package packages.data_structures.myqueue.array;
+package packages.data_structures.queue.array;
 
 /**
  *      To test soundness of MyQueueArray class.
