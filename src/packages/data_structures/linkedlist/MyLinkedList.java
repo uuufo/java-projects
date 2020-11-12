@@ -1,5 +1,14 @@
 package packages.data_structures.linkedlist;
 
+/**
+ * A generic Doubly Linked List data structure.
+ *
+ * @param <T> data type to be used with list
+ *
+ * Created by Jared Larsen
+ *
+ */
+
 class MyLinkedList<T> {
 
     Node<T> head;
@@ -153,7 +162,6 @@ class MyLinkedList<T> {
      * Prints the current list to the console.
      */
     public void print() {
-        System.out.println(size());
         for (int i = 0; i < size(); i++) {
             System.out.println(get(i));
         }
