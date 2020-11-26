@@ -14,8 +14,8 @@ import java.util.Set;
 class MyHashMap<K, V> {
     private Entry<K, V>[] table = new Entry[16];
     private int size = 0;
-    boolean growing = false;
-    boolean shrinking = false;
+    private boolean growing = false;
+    private boolean shrinking = false;
 
     /**
      * Adds a new key-value pair or updates the value of an existing key
