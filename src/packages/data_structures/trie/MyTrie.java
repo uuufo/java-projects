@@ -3,7 +3,7 @@ package packages.data_structures.trie;
 import java.util.ArrayList;
 
 /**
- * A case-sensitive Trie data structure for use with English alphabet Strings.
+ * A case-sensitive Trie data structure for use with English alphabet Strings (words).
  *
  * Created by Jared Larsen
  */
@@ -13,10 +13,10 @@ public class MyTrie {
     private final TrieNode root = new TrieNode(false);
 
     /**
-     * Stores a String in the Trie.
+     * Stores a word in the Trie.
      *
-     * @param word String to be stored
-     * @return true if new String has been added, false if String was already present
+     * @param word to be stored
+     * @return true if new word has been added, false if word was already present
      */
     public boolean insert(String word) {
         int[] index = getIndex(word);
@@ -36,10 +36,10 @@ public class MyTrie {
     }
 
     /**
-     * Removes entry from the Trie.
+     * Removes word from the Trie.
      *
-     * @param word String to be removed
-     * @return true if String was removed, false if String was not present
+     * @param word to be removed
+     * @return true if word was removed, false if word was not present
      */
     public boolean remove(String word) {
         int[] index = getIndex(word);
@@ -89,7 +89,7 @@ public class MyTrie {
     }
 
     /**
-     * Takes an index location of an array and returns the char represented by that index
+     * Takes the index location of an array and returns the char represented by that index.
      *
      * @param i index representing char
      * @return char
@@ -103,9 +103,9 @@ public class MyTrie {
     }
 
     /**
-     * Gets index locations of the underlying array(s) for each character in a String.
+     * Gets index locations for each character of a word in the underlying array(s).
      *
-     * @param word String to be indexed
+     * @param word to be indexed
      * @return array of index locations
      */
     private int[] getIndex(String word) {
@@ -118,10 +118,10 @@ public class MyTrie {
     }
 
     /**
-     * Checks if String is currently stored in the Trie.
+     * Checks if word is currently stored in the Trie.
      *
-     * @param word String to search for
-     * @return true if String is currently stored, false if it is not
+     * @param word to search for
+     * @return true if word is currently stored, false if it is not
      */
     public boolean search(String word) {
         int[] index = getIndex(word);
@@ -155,7 +155,7 @@ public class MyTrie {
      * Traverse each array of children recursively until all words are found.
      *
      * @param result   ArrayList to store complete words
-     * @param word     String built with characters found in children
+     * @param word     concatenated using characters found represented in children arrays
      * @param iterator Node to be actively traversed
      */
     private void traverse(ArrayList<String> result, String word, TrieNode iterator) {
