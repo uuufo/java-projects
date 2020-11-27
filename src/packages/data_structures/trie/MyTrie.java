@@ -1,15 +1,16 @@
 package packages.data_structures.trie;
 
+import java.util.ArrayList;
+
 /**
  * A case-sensitive Trie data structure for use with English alphabet Strings.
  *
  * Created by Jared Larsen
- *
  */
 
 public class MyTrie {
 
-    private final Node root = new Node(false);
+    private final TrieNode root = new TrieNode(false);
 
     /**
      * Stores a String in the Trie.
@@ -19,13 +20,13 @@ public class MyTrie {
      */
     public boolean insert(String word) {
         int[] index = getIndex(word);
-        Node iterator = root;
-        if (exist(word)) {
+        TrieNode iterator = root;
+        if (search(word)) {
             return false;
         } else {
             for (int i : index) {
                 if (iterator.children[i] == null) {
-                    iterator.children[i] = new Node(false);
+                    iterator.children[i] = new TrieNode(false);
                 }
                 iterator = iterator.children[i];
             }
@@ -42,8 +43,8 @@ public class MyTrie {
      */
     public boolean remove(String word) {
         int[] index = getIndex(word);
-        Node iterator = root.children[index[0]];
-        Node previous = iterator;
+        TrieNode iterator = root.children[index[0]];
+        TrieNode previous = iterator;
 
         if (iterator == null) {
             return false;
@@ -71,12 +72,13 @@ public class MyTrie {
     }
 
     /**
-     * Finds the array index where a specific char is represented.
+     * Specifies the array index where a char is to be represented.
+     *
      * @param c char to represent
      * @return index where char is represented in underlying array
-     * @throws IllegalCharacterException
+     * @throws IllegalCharacterException if characters other than standard letters are used
      */
-    private int charLocation(char c) throws IllegalCharacterException {
+    private int charToIndex(char c) throws IllegalCharacterException {
         if (Character.isLowerCase(c)) {
             return (c - 71);
         } else if (Character.isUpperCase(c)) {
@@ -87,7 +89,22 @@ public class MyTrie {
     }
 
     /**
+     * Takes an index location of an array and returns the char represented by that index
+     *
+     * @param i index representing char
+     * @return char
+     */
+    private char indexToChar(int i) {
+        if (i < 26) {
+            return (char) (i + 65);
+        } else {
+            return (char) (i + 71);
+        }
+    }
+
+    /**
      * Gets index locations of the underlying array(s) for each character in a String.
+     *
      * @param word String to be indexed
      * @return array of index locations
      */
@@ -95,19 +112,20 @@ public class MyTrie {
         int[] index = new int[word.length()];
 
         for (int i = 0; i < word.length(); i++) {
-            index[i] = charLocation(word.charAt(i));
+            index[i] = charToIndex(word.charAt(i));
         }
         return index;
     }
 
     /**
      * Checks if String is currently stored in the Trie.
+     *
      * @param word String to search for
      * @return true if String is currently stored, false if it is not
      */
-    public boolean exist(String word) {
+    public boolean search(String word) {
         int[] index = getIndex(word);
-        Node iterator = root.children[index[0]];
+        TrieNode iterator = root.children[index[0]];
 
         if (iterator == null) {
             return false;
@@ -123,15 +141,44 @@ public class MyTrie {
     }
 
     /**
+     * Searches for all words stored in the Trie.
+     *
+     * @return ArrayList of words.
+     */
+    public ArrayList<String> getWords() {
+        ArrayList<String> result = new ArrayList<>();
+        traverse(result, "", root);
+        return result;
+    }
+
+    /**
+     * Traverse each array of children recursively until all words are found.
+     *
+     * @param result   ArrayList to store complete words
+     * @param word     String built with characters found in children
+     * @param iterator Node to be actively traversed
+     */
+    private void traverse(ArrayList<String> result, String word, TrieNode iterator) {
+        if (iterator.isEnd()) {
+            result.add(word);
+        }
+        for (int i = 0; i < 52; i++) {
+            if (iterator.children[i] != null) {
+                traverse(result, word + indexToChar(i), iterator.children[i]);
+            }
+        }
+    }
+
+    /**
      * Simple POJO representing a Node in our Trie.
      * Each Node contains a children array of 52 (26 uppercase letters + 26 lowercase letters).
      */
-    static class Node {
+    static class TrieNode {
         private boolean end;
-        public Node[] children;
+        public TrieNode[] children;
 
-        public Node(Boolean end) {
-            this.children = new Node[52];
+        public TrieNode(Boolean end) {
+            this.children = new TrieNode[52];
             this.end = end;
         }
 
