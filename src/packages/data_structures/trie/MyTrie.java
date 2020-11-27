@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class MyTrie {
 
     private final TrieNode root = new TrieNode(false);
+    private final int arraySize = 52;
 
     /**
      * Stores a word in the Trie.
@@ -58,7 +59,7 @@ public class MyTrie {
             }
         }
         if (iterator.isEnd()) {
-            for (int i = 0; i < 52; i++) {
+            for (int i = 0; i < arraySize; i++) {
                 if (iterator.children[i] != null) {
                     iterator.setEnd(false);
                     return true;
@@ -162,7 +163,7 @@ public class MyTrie {
         if (iterator.isEnd()) {
             result.add(word);
         }
-        for (int i = 0; i < 52; i++) {
+        for (int i = 0; i < arraySize; i++) {
             if (iterator.children[i] != null) {
                 traverse(result, word + indexToChar(i), iterator.children[i]);
             }
