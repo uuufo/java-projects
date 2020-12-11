@@ -1,5 +1,7 @@
 package packages.data_structures.stack.array;
 
+import packages.data_structures.exceptions.EmptyStackException;
+
 /**
  *      To test soundness of MyStackArray class.
  *

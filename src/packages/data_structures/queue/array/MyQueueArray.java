@@ -1,5 +1,7 @@
 package packages.data_structures.queue.array;
 
+import packages.data_structures.exceptions.EmptyQueueException;
+
 import java.util.Arrays;
 
 /**
@@ -11,7 +13,7 @@ import java.util.Arrays;
  *
  */
 
-class MyQueueArray<T> {
+public class MyQueueArray<T> {
 
     private T[] queue;
     private T[] tempQueue;
@@ -43,7 +45,7 @@ class MyQueueArray<T> {
      */
     public void add(T data) {
         int count = 0;
-        System.out.println(data);
+        //System.out.println(data);
         while (queue[count] != null) {
             count++;
             if (count + 1 >= queue.length - (queue.length / 4)) {
@@ -52,6 +54,14 @@ class MyQueueArray<T> {
             }
         }
         queue[count] = data;
+    }
+
+    /**
+     * Tells user is queue is empty
+     * @return true if contains no items
+     */
+    public boolean isEmpty() {
+        return size() == 0;
     }
 
     /**
@@ -86,7 +96,7 @@ class MyQueueArray<T> {
      */
     private T dequeue() {
         T data = queue[0];
-        System.out.println(data);
+        //System.out.println(data);
         System.arraycopy(queue, 1, queue, 0, queue.length - 1);
 
         int count = 0;
@@ -149,9 +159,3 @@ class MyQueueArray<T> {
     }
 }
 
-class EmptyQueueException extends Exception {
-    @Override
-    public String toString() {
-        return "EmptyQueueException - There is nothing to remove();";
-    }
-}

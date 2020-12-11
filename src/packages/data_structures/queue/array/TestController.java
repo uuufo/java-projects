@@ -1,5 +1,7 @@
 package packages.data_structures.queue.array;
 
+import packages.data_structures.exceptions.EmptyQueueException;
+
 /**
  *      To test soundness of MyQueueArray class.
  *

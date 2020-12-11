@@ -1,5 +1,7 @@
 package packages.data_structures.trie;
 
+import packages.data_structures.exceptions.IllegalCharacterException;
+
 import java.util.ArrayList;
 
 /**
@@ -192,11 +194,6 @@ public class MyTrie {
         }
     }
 
-    static class IllegalCharacterException extends RuntimeException {
-        @Override
-        public String toString() {
-            return "IllegalCharacterException - only letters from the English alphabet are allowed.";
-        }
-    }
+
 }
 

@@ -11,7 +11,7 @@ import java.util.Set;
  *
  */
 
-class MyHashMap<K, V> {
+public class MyHashMap<K, V> {
     private Entry<K, V>[] table = new Entry[16];
     private int size = 0;
     private boolean growing = false;

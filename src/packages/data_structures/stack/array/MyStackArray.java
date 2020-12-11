@@ -1,5 +1,7 @@
 package packages.data_structures.stack.array;
 
+import packages.data_structures.exceptions.EmptyStackException;
+
 import java.util.Arrays;
 
 /**
@@ -11,7 +13,7 @@ import java.util.Arrays;
  *
  */
 
-class MyStackArray<T> {
+public class MyStackArray<T> {
 
     private T[] stack;
     private T[] tempStack;
@@ -133,9 +135,3 @@ class MyStackArray<T> {
     }
 }
 
-class EmptyStackException extends Exception {
-    @Override
-    public String toString() {
-        return "Projects.EmptyStackException - There is nothing to pop();";
-    }
-}
