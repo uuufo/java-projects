@@ -1,10 +1,9 @@
 package packages.sorting_algorithms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
-public class MergeSort {
+public class QuickSort {
     public static void main(String[] args) {
 
         int[] data = new int[64];
@@ -16,39 +15,31 @@ public class MergeSort {
 
     }
 
-    static void sort(int[] data, int left, int right) {
-        if (left >= right) {
-            return;
-        }
-        int middle = (left + right) / 2;
-        sort(data, left, middle);
-        sort(data, middle + 1, right);
-        merge(data, left, middle, right);
-    }
+    static void sort(int[] data, int low, int high) {
+        int i = low;
+        int j = high;
+        int pivot = data[(low + high) / 2];
 
-    static void merge(int[] data, int left, int middle, int right) {
-
-        int[] result = Arrays.copyOf(data, data.length);
-        int i = left;
-        int j = middle + 1;
-        int k = left;
-
-        while (i <= middle && j <= right) {
-            if (result[i] <= result[j]) {
-                data[k] = result[i];
+        while (i <= j) {
+            while (data[i] < pivot) {
                 i++;
-            } else {
-                data[k] = result[j];
-                j++;
             }
-            k++;
+            while (data[j] > pivot) {
+                j--;
+            }
+            if (i <= j) {
+                int temp = data[i];
+                data[i] = data[j];
+                data[j] = temp;
+                i++;
+                j--;
+            }
         }
 
-        while (i <= middle) {
-            data[k] = result[i];
-            k++;
-            i++;
-        }
+        if (low < j)
+            sort(data, low, j);
+        if (i < high)
+            sort(data, i, high);
     }
 
     static void fillArray(int[] data) {
