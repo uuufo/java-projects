@@ -1,28 +1,20 @@
 package packages.sorting_algorithms;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 public class BubbleSort {
     public static void main(String[] args) {
 
         int[] data = new int[64];
         int[] data2 = new int[64];
-
-        fillArray(data);
-        fillArray(data2);
-
-        printArray(data);
-        printArray(data2);
-
+        ArrayUtils arr = new ArrayUtils();
+        arr.fillArray(data);
+        arr.fillArray(data2);
+        arr.printArray(data);
+        arr.printArray(data2);
         System.out.println("--------------------");
-
         sortWhile(data);
         sortFor(data2);
-
-        printArray(data);
-        printArray(data2);
-
+        arr.printArray(data);
+        arr.printArray(data2);
     }
 
     static void sortWhile(int[] data) {
@@ -52,26 +44,5 @@ public class BubbleSort {
                 }
             }
         }
-    }
-
-    static void fillArray(int[] data) {
-        ArrayList<Integer> usedNums = new ArrayList<>();
-        Random rand = new Random();
-
-        for (int i = 0; i < data.length; i++) {
-            int y = rand.nextInt(data.length) + 1;
-            while (usedNums.contains(y)) {
-                y = rand.nextInt(data.length) + 1;
-            }
-            usedNums.add(y);
-            data[i] = y;
-        }
-    }
-
-    static void printArray(int[] data) {
-        for (int i : data) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
     }
 }
