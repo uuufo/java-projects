@@ -10,6 +10,7 @@ public class QuickSort {
         System.out.println("--------------------");
         sort(data, 0, data.length - 1);
         arr.printArray(data);
+
     }
 
     static void sort(int[] data, int low, int high) {
@@ -32,7 +33,6 @@ public class QuickSort {
                 j--;
             }
         }
-
         if (low < j)
             sort(data, low, j);
         if (i < high)
